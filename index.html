@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html lang="am">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>የዮሴፍ ቤት | Yosef's Private Home</title>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --primary: #2563eb;       
+            --primary-dark: #1d4ed8;
+            --accent: #ef4444;        
+            --bg-overlay: rgba(224, 242, 254, 0.85); 
+            --card-bg: rgba(255, 255, 255, 0.94);    
+            --text-dark: #0f172a;     
+            --text-muted: #475569;    
+            --border: #bae6fd;        
+            --success: #10b981;
+            --spiritual: #059669;     
+            --health: #db2777;        
+        }
+
+        body.dark-mode {
+            --bg-overlay: rgba(9, 13, 22, 0.90);     
+            --card-bg: rgba(17, 24, 39, 0.94);       
+            --text-dark: #f8fafc;     
+            --text-muted: #94a3b8;
+            --border: #1e293b;
+            --spiritual: #34d399;
+            --health: #f472b6;
+        }
+
+        body {
+            /* የእመቤታችን ቅድስት ድንግል ማርያም ሥዕል አድኖ BACKGROUND */
+            background-image: 
+                linear-gradient(var(--bg-overlay), var(--bg-overlay)),
+                url('https://upload.wikimedia.org/wikipedia/commons/e/eb/Virgin_Mary_Ethiopian_Icon.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            color: var(--text-dark);
+            line-height: 1.6;
+            transition: background 0.3s, color 0.3s;
+            padding-bottom: 40px;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: var(--card-bg);
+            backdrop-filter: blur(8px);
+            border-bottom: 2px solid var(--primary);
+            padding: 12px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+
+        .brand-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .site-logo {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.4rem;
+            box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
+        }
+
+        .user-greeting h1 {
+            font-size: 1.15rem;
+            color: var(--primary);
+            line-height: 1.2;
+        }
+
+        /* 4-Line Welcome Subtitle Style */
+        .welcome-subtitle {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 2px;
+            line-height: 1.3;
+            font-weight: 500;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .clock-display {
+            font-size: 0.95rem;
+            font-weight: bold;
+            font-family: monospace;
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--primary);
+            padding: 6px 10px;
+            border-radius: 8px;
+        }
+
+        .lang-select {
+            padding: 6px 10px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background-color: var(--card-bg);
+            color: var(--text-dark);
+            font-size: 0.85rem;
+            cursor: pointer;
+            outline: none;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border-radius: 8px;
+            border: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-primary { background-color: var(--primary); color: white; }
+        .btn-primary:hover { background-color: var(--primary-dark); }
+        .btn-accent { background-color: var(--accent); color: white; }
+        .btn-spiritual { background-color: var(--spiritual); color: white; }
+        .btn-success { background-color: var(--success); color: white; }
+        .btn-health { background-color: var(--health); color: white; }
+
+        .dashboard-container {
+            padding: 30px 5%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            backdrop-filter: blur(6px);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 22px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 18px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 10px;
+        }
+
+        .card-header h3 {
+            font-size: 1.1rem;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .card-header h3.health-title { color: var(--health); }
+        .card-header h3.spiritual-title { color: var(--spiritual); }
+
+        .form-control {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background-color: rgba(255, 255, 255, 0.6);
+            color: var(--text-dark);
+            font-size: 0.9rem;
+            outline: none;
+            margin-bottom: 10px;
+        }
+
+        body.dark-mode .form-control {
+            background-color: rgba(15, 23, 42, 0.6);
+        }
+
+        .form-control:focus { border-color: var(--primary); }
+
+        .item-list {
+            list-style: none;
+            max-height: 220px;
+            overflow-y: auto;
+        }
+
+        .item-list li {
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 8px;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            border: 1px solid var(--border);
+        }
+
+        body.dark-mode .item-list li {
+            background-color: rgba(15, 23, 42, 0.5);
+        }
+
+        .delete-btn {
+            color: var(--accent);
+            cursor: pointer;
+            border: none;
+            background: none;
+        }
+
+        .timer-display {
+            font-size: 2.8rem;
+            font-weight: bold;
+            text-align: center;
+            font-family: monospace;
+            color: var(--accent);
+            margin: 15px 0;
+        }
+
+        .bookmark-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+            gap: 12px;
+        }
+
+        .bookmark-item {
+            text-decoration: none;
+            color: var(--text-dark);
+            background-color: rgba(255, 255, 255, 0.5);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 12px;
+            text-align: center;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+
+        body.dark-mode .bookmark-item {
+            background-color: rgba(15, 23, 42, 0.5);
+        }
+
+        .bookmark-item:hover {
+            transform: translateY(-3px);
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .bookmark-item i {
+            font-size: 1.3rem;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            border-top: 1px solid var(--border);
+            margin-top: 30px;
+            background-color: var(--card-bg);
+        }
+
+        @media (max-width: 768px) {
+            header { flex-direction: column; gap: 10px; text-align: center; }
+            .brand-container { flex-direction: column; }
+            .header-actions { flex-wrap: wrap; justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER & LOGO -->
+    <header>
+        <div class="brand-container">
+            <div class="site-logo" style="background: linear-gradient(135deg, #059669, #d97706); box-shadow: 0 4px 12px rgba(5, 150, 105, 0.4);">
+                <i class="fa-solid fa-cross" style="color:#ffffff;"></i>
+            </div>
+            <div class="user-greeting">
+                <h1 id="uiTitle">የዮሴፍ ቤት (Yoseph's Private Home)</h1>
+                <!-- 4-Line Welcome Subtitle -->
+                <div class="welcome-subtitle">
+                    ✨ ሰላም ለዚህ ቤት! | 💻 የቴክኖሎጂ እና ፈጠራ ማዕከል<br>
+                    🙏 የሰላም እና የጸሎት መጠለያ | 🚀 የነገው ስኬት መሠረት
+                </div>
+            </div>
+        </div>
+
+        <div class="header-actions">
+            <select id="langSelector" class="lang-select" onchange="changeLanguage(this.value)">
+                <option value="am">አማርኛ</option>
+                <option value="en">English</option>
+                <option value="ar">العربية</option>
+                <option value="gez">ግዕዝ</option>
+            </select>
+
+            <div id="liveClock" class="clock-display">00:00:00 AM</div>
+            <button id="themeToggle" class="btn" style="border: 1px solid var(--border); background: none; color: var(--text-dark);">
+                <i class="fa-solid fa-moon"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- AUTO DYNAMIC HOURLY QUOTE BAR -->
+    <div style="background: rgba(5, 150, 105, 0.18); backdrop-filter: blur(5px); text-align: center; padding: 10px 5%; font-size: 0.95rem; font-style: italic; color: var(--spiritual); border-bottom: 1px solid var(--border); font-weight: 500;" id="quoteText">
+        💡 "የቤትህ ሰላም እና ትጋት የነገ ስኬትህ መሠረት ናቸው!"
+    </div>
+
+    <!-- MAIN DASHBOARD CONTENT -->
+    <main class="dashboard-container">
+
+        <!-- 1. SPIRITUAL & ETHIOPIAN CALENDAR HUB -->
+        <div class="card" style="border-color: var(--spiritual);">
+            <div class="card-header" style="border-color: var(--spiritual);">
+                <h3 class="spiritual-title" id="tSpiritualCalendar"><i class="fa-solid fa-calendar-star"></i> መንፈሳዊ እና የበዓላት ካላንደር</h3>
+            </div>
+            <div style="text-align: center; padding: 5px 0;">
+                <p style="font-size: 1.05rem; font-weight: bold; color: var(--spiritual);" id="ethiopianCalendarBox">ኢትዮጵያዊ አቆጣጠር በመጫን ላይ...</p>
+                <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 6px;" id="gregorianCalendarBox">ግሪጎሪያን አቆጣጠር በመጫን ላይ...</p>
+                
+                <div id="holidayNoticeBox" style="margin-top: 15px; background: rgba(5, 150, 105, 0.12); padding: 12px; border-radius: 10px; border: 1px dashed var(--spiritual); text-align: left;">
+                    <strong style="color: var(--spiritual); display: block; margin-bottom: 4px;"><i class="fa-solid fa-bell"></i> የዛሬ መንፈሳዊ መልዕክት እና በዓል፦</strong>
+                    <span id="holidayText" style="font-size: 0.9rem; color: var(--text-dark);">መረጃ በመጫን ላይ...</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. HEALTH & VITALS MONITOR -->
+        <div class="card" style="border-color: var(--health);">
+            <div class="card-header">
+                <h3 class="health-title" id="tHealth">የጤና እና የደም ግፊት መከታተያ (Health Vitals)</h3>
+            </div>
+            <form id="healthForm">
+                <input type="text" id="bpValue" class="form-control" placeholder="የደም ግፊት (ምሳሌ፡ 120/80)..." required>
+                <input type="number" id="hrValue" class="form-control" placeholder="የልብ ምት በደቂቃ (Heart Rate - bpm)..." required>
+                <input type="text" id="healthNote" class="form-control" placeholder="የጤና ሁኔታ ማስታወሻ..." required>
+                <button type="submit" class="btn btn-health" style="width: 100%; justify-content: center;" id="btnSaveHealth"><i class="fa-solid fa-notes-medical"></i> የጤና መረጃ መዝግብ</button>
+            </form>
+            <ul id="healthList" class="item-list" style="margin-top: 15px;"></ul>
+        </div>
+
+        <!-- 3. PROBLEM & RISK ALERT -->
+        <div class="card" style="border-color: var(--accent);">
+            <div class="card-header">
+                <h3 style="color: var(--accent);" id="tAlert"><i class="fa-solid fa-triangle-exclamation"></i> የችግሮችና ስጋቶች ማስጠንቀቂያ (Alert)</h3>
+            </div>
+            <form id="problemForm">
+                <input type="text" id="problemTitle" class="form-control" placeholder="የችግሩ ወይም የስጋቱ ስም..." required>
+                <textarea id="problemDesc" class="form-control" rows="2" placeholder="የችግሩ መፍትሔ ወይም ዝርዝር..." required></textarea>
+                <button type="submit" class="btn btn-accent" style="width: 100%; justify-content: center;" id="btnSaveAlert"><i class="fa-solid fa-bell"></i> ስጋት መዝግብ (Alert)</button>
+            </form>
+            <ul id="problemList" class="item-list" style="margin-top: 15px;"></ul>
+        </div>
+
+        <!-- 4. CONTACT & CALL LOG TRACKER -->
+        <div class="card" style="border-color: var(--primary);">
+            <div class="card-header">
+                <h3 id="tContact"><i class="fa-solid fa-comments"></i> የቀኑ የግንኙነትና ንግግር መዝገብ</h3>
+            </div>
+            <form id="interactionForm">
+                <input type="text" id="personName" class="form-control" placeholder="የሰውየው/የግለሰቡ ስም..." required>
+                <input type="text" id="talkDuration" class="form-control" placeholder="የቆያችሁበት ሰዓት/ደቂቃ..." required>
+                <input type="text" id="talkTopic" class="form-control" placeholder="የተነጋገራችሁበት ዋና ርዕስ..." required>
+                <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;" id="btnSaveContact"><i class="fa-solid fa-user-check"></i> ንግግር መዝግብ</button>
+            </form>
+            <ul id="interactionList" class="item-list" style="margin-top: 15px;"></ul>
+        </div>
+
+        <!-- 5. DAILY WORK LOG -->
+        <div class="card" style="border-color: var(--primary);">
+            <div class="card-header">
+                <h3 id="tWork"><i class="fa-solid fa-briefcase"></i> የዕለት ስራዎችና ውሎ መዝገብ</h3>
+            </div>
+            <form id="workLogForm">
+                <input type="text" id="workTitle" class="form-control" placeholder="የተከናወነው ስራ ስም..." required>
+                <textarea id="workDetail" class="form-control" rows="2" placeholder="የስራው ዝርዝርና የተገኘው ውጤት..." required></textarea>
+                <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;" id="btnSaveWork"><i class="fa-solid fa-clipboard-check"></i> ስራ መዝግብ</button>
+            </form>
+            <ul id="workLogList" class="item-list" style="margin-top: 15px;"></ul>
+        </div>
+
+        <!-- 6. STEP COUNTER & TIME MANAGEMENT -->
+        <div class="card" style="border-color: var(--success); text-align: center;">
+            <div class="card-header">
+                <h3 style="color: var(--success);" id="tSteps"><i class="fa-solid fa-person-walking"></i> የእርምጃ ቆጣሪና ሰዓት ማኔጀር</h3>
+            </div>
+            <div style="margin: 10px 0;">
+                <h2 id="stepCountDisplay" style="color: var(--success); font-size: 2.2rem; font-family: monospace;">0</h2>
+                <p style="font-size: 0.85rem; color: var(--text-muted);" id="tStepText">የዛሬው እርምጃህ (Steps)</p>
+            </div>
+            <div style="display: flex; gap: 8px; justify-content: center; margin-bottom: 12px;">
+                <button onclick="addSteps(500)" class="btn btn-success">+500 እርምጃ</button>
+                <button onclick="addSteps(1000)" class="btn btn-success">+1000 እርምጃ</button>
+                <button onclick="resetSteps()" class="btn" style="border: 1px solid var(--border);" id="btnResetSteps">አፅዳ</button>
+            </div>
+        </div>
+
+        <!-- 7. ADVANCED FINANCE MANAGER -->
+        <div class="card" style="border-color: var(--primary);">
+            <div class="card-header">
+                <h3 id="tFinance"><i class="fa-solid fa-wallet"></i> የገቢና ወጪ አስተዳደር (Finance)</h3>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 15px; text-align: center;">
+                <div style="background: rgba(16, 185, 129, 0.15); padding: 8px; border-radius: 8px;">
+                    <small style="color: var(--success); font-weight: bold;" id="tIncLabel">አጠቃላይ ገቢ</small>
+                    <p id="totalIncome" style="font-weight: bold; font-size: 0.95rem;">0 ETB</p>
+                </div>
+                <div style="background: rgba(239, 68, 68, 0.15); padding: 8px; border-radius: 8px;">
+                    <small style="color: var(--accent); font-weight: bold;" id="tExpLabel">አጠቃላይ ወጪ</small>
+                    <p id="totalExpense" style="font-weight: bold; font-size: 0.95rem;">0 ETB</p>
+                </div>
+                <div style="background: rgba(37, 99, 235, 0.15); padding: 8px; border-radius: 8px;">
+                    <small style="color: var(--primary); font-weight: bold;" id="tBalLabel">ቀሪ ገንዘብ</small>
+                    <p id="netBalance" style="font-weight: bold; font-size: 0.95rem;">0 ETB</p>
+                </div>
+            </div>
+            <form id="financeForm">
+                <input type="text" id="finDesc" class="form-control" placeholder="የምክንያቱ ስም..." required>
+                <input type="number" id="finAmount" class="form-control" placeholder="የገንዘብ መጠን (ETB)..." required>
+                <select id="finType" class="form-control" style="margin-bottom: 10px;">
+                    <option value="income">🟢 ገቢ (Income)</option>
+                    <option value="expense">🔴 ወጪ (Expense)</option>
+                </select>
+                <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;" id="btnSaveFin"><i class="fa-solid fa-plus-circle"></i> መዝግብ (Save)</button>
+            </form>
+            <ul id="financeList" class="item-list" style="margin-top: 15px;"></ul>
+        </div>
+
+        <!-- 8. MEDIA VAULT -->
+        <div class="card" style="border-color: var(--primary);">
+            <div class="card-header">
+                <h3 id="tMedia"><i class="fa-solid fa-photo-film"></i> የሚዲያ ማከማቻ (Media Vault)</h3>
+            </div>
+            <form id="mediaForm">
+                <input type="text" id="mediaTitle" class="form-control" placeholder="የሚዲያው ስም..." required>
+                <input type="text" id="mediaUrl" class="form-control" placeholder="የፋይል ሊንክ (URL) ወይም ዱካ..." required>
+                <select id="mediaType" class="form-control" style="margin-bottom: 10px;">
+                    <option value="image">🖼️ ምስል (Image)</option>
+                    <option value="audio">🎵 ድምፅ/ኦዲዮ (Audio)</option>
+                    <option value="video">🎥 ቪዲዮ (Video)</option>
+                </select>
+                <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;" id="btnSaveMedia"><i class="fa-solid fa-upload"></i> ሚዲያ ጫን</button>
+            </form>
+            <ul id="mediaList" class="item-list" style="margin-top: 15px;"></ul>
+        </div>
+
+        <!-- 9. E-BOOK & DIGITAL LIBRARY READER -->
+        <div class="card" style="border-color: var(--spiritual);">
+            <div class="card-header" style="border-color: var(--spiritual);">
+                <h3 class="spiritual-title" id="tLibrary"><i class="fa-solid fa-book-open-reader"></i> የዲጂታል መጽሐፍ ማከማቻ (E-Library)</h3>
+            </div>
+            <form id="bookForm">
+                <input type="text" id="bookTitle" class="form-control" placeholder="የመጽሐፉ ስም..." required>
+                <textarea id="bookContent" class="form-control" rows="3" placeholder="የመጽሐፉን ይዘት ወይም ማጠቃለያ እዚህ ለጥፍ/ጻፍ..." required></textarea>
+                <button type="submit" class="btn btn-spiritual" style="width: 100%; justify-content: center;" id="btnSaveBook"><i class="fa-solid fa-plus"></i> መጽሐፍ ጫን (Save)</button>
+            </form>
+            <ul id="bookList" class="item-list" style="margin-top: 15px;"></ul>
+        </div>
+
+        <!-- 10. SPIRITUAL LIFE & PRAYER HUB -->
+        <div class="card" style="border-color: var(--spiritual);">
+            <div class="card-header" style="border-color: var(--spiritual);">
+                <h3 class="spiritual-title" id="tSpiritual"><i class="fa-solid fa-hands-praying"></i> መንፈሳዊ ህይወት (Spiritual Life)</h3>
+            </div>
+            <form id="spiritualForm">
+                <input type="text" id="spiritualDesc" class="form-control" placeholder="የጸሎት ጊዜ፣ የቃል ንባብ ወይም መንፈሳዊ ግብ..." required>
+                <input type="date" id="spiritualDate" class="form-control" required>
+                <button type="submit" class="btn btn-spiritual" style="width: 100%; justify-content: center;" id="btnSaveSpiritual"><i class="fa-solid fa-plus"></i> መንፈሳዊ ተግባር መዝግብ</button>
+            </form>
+            <ul id="spiritualList" class="item-list" style="margin-top: 15px;"></ul>
+        </div>
+
+        <!-- 11. TASK REMINDER & TO-DO LIST -->
+        <div class="card">
+            <div class="card-header">
+                <h3 id="tTasks"><i class="fa-solid fa-bell"></i> ተግባራት እና ማሳሰቢያ</h3>
+            </div>
+            <form id="taskForm">
+                <input type="text" id="taskTitle" class="form-control" placeholder="የስራው/የተግባሩ ስም..." required>
+                <input type="datetime-local" id="taskTime" class="form-control" required>
+                <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;" id="btnSaveTask"><i class="fa-solid fa-plus"></i> ተግባር ጨምር</button>
+            </form>
+            <ul id="taskList" class="item-list" style="margin-top: 15px;"></ul>
+        </div>
+
+        <!-- 12. POMODORO FOCUS TIMER -->
+        <div class="card" style="text-align: center;">
+            <div class="card-header">
+                <h3 id="tPomodoro"><i class="fa-solid fa-stopwatch"></i> ትኩረት ማድረጊያ (Pomodoro)</h3>
+            </div>
+            <div id="timerDisplay" class="timer-display">25:00</div>
+            <div style="display: flex; justify-content: center; gap: 10px;">
+                <button id="startTimer" class="btn btn-primary"><i class="fa-solid fa-play"></i> ጀምር</button>
+                <button id="pauseTimer" class="btn btn-accent"><i class="fa-solid fa-pause"></i> አቁም</button>
+                <button id="resetTimer" class="btn" style="border: 1px solid var(--border);"><i class="fa-solid fa-rotate-left"></i> ራስጌ</button>
+            </div>
+        </div>
+
+        <!-- 13. PASSWORD VAULT -->
+        <div class="card">
+            <div class="card-header">
+                <h3 id="tPass"><i class="fa-solid fa-key"></i> የፓስዎርድ ማከማቻ</h3>
+            </div>
+            <form id="passForm">
+                <input type="text" id="passSite" class="form-control" placeholder="የድረ-ገጹ ስም..." required>
+                <input type="text" id="passUser" class="form-control" placeholder="ዩዘርኔም ወይም ኢሜል..." required>
+                <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;" id="btnSavePass"><i class="fa-solid fa-lock"></i> ፓስዎርድ ቆልፍ</button>
+            </form>
+            <ul id="passList" class="item-list" style="margin-top: 15px;"></ul>
+        </div>
+
+        <!-- 14. QUICK NOTES -->
+        <div class="card">
+            <div class="card-header">
+                <h3 id="tNotes"><i class="fa-solid fa-code"></i> ማስታወሻና የኮድ ማከማቻ</h3>
+            </div>
+            <textarea id="quickNote" class="form-control" rows="4" placeholder="ጠቃሚ ማስታወሻዎችን እዚህ ጻፍ..."></textarea>
+            <button id="saveNoteBtn" class="btn btn-primary" style="width: 100%; justify-content: center;" id="btnSaveNote"><i class="fa-solid fa-floppy-disk"></i> ሴቭ አድርግ</button>
+            <p id="noteStatus" style="font-size: 0.8rem; color: var(--success); text-align: center; margin-top: 5px; display: none;">በስኬት ሴቭ ተደርጓል!</p>
+        </div>
+
+        <!-- 15. QUICK BOOKMARKS -->
+        <div class="card">
+            <div class="card-header">
+                <h3 id="tBookmarks"><i class="fa-solid fa-bookmark"></i> ፈጣን ሊንኮች</h3>
+            </div>
+            <div class="bookmark-grid">
+                <a href="https://github.com" target="_blank" class="bookmark-item"><i class="fa-brands fa-github"></i> GitHub</a>
+                <a href="https://web.telegram.org" target="_blank" class="bookmark-item"><i class="fa-brands fa-telegram" style="color: #0088cc;"></i> Telegram</a>
+                <a href="https://chat.openai.com" target="_blank" class="bookmark-item"><i class="fa-solid fa-robot" style="color: #10a37f;"></i> ChatGPT</a>
+                <a href="https://youtube.com" target="_blank" class="bookmark-item"><i class="fa-brands fa-youtube" style="color: #ff0000;"></i> YouTube</a>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 የዮሴፍ ቤት (Yoseph's Private Home) | All Rights Reserved</p>
+    </footer>
+
+    <!-- AUDIO ALARM -->
+    <audio id="alarmSound" src="https://actions.google.com/sounds/v1/alarms/beep_short.ogg" preload="auto"></audio>
+
+    <!-- JAVASCRIPT LOGIC & PWA OFFLINE SUPPORT -->
+    <script>
+        // PWA SERVICE WORKER REGISTRATION (ለ Offline አጠቃቀም)
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('data:text/javascript;base64,Lyogሰርቨር ዎርከር (PWA Offline Mode) */\nself.addEventListener("install", (e) => e.waitUntil(caches.open("yosef-cache-v1").then(cache => cache.addAll(["/"]))));\nself.addEventListener("fetch", (e) => e.respondWith(caches.match(e.request).then(res => res || fetch(e.request))));')
+                .then(() => console.log("Offline Mode Active!"))
+                .catch(err => console.log("Service Worker Error", err));
+            });
+        }
+
+        // 1. MULTILINGUAL DICTIONARY SUPPORT
+        const translations = {
+            am: {
+                title: "የዮሴፍ ቤት (Yoseph's Private Home)",
+                spiritualCalendar: "መንፈሳዊ እና የበዓላት ካላንደር",
+                health: "የጤና እና የደም ግፊት መከታተያ (Health Vitals)",
+                alert: "የችግሮችና ስጋቶች ማስጠንቀቂያ (Alert)",
+                contact: "የቀኑ የግንኙነትና ንግግር መዝገብ",
+                work: "የዕለት ስራዎችና ውሎ መዝገብ",
+                steps: "የእርምጃ ቆጣሪና ሰዓት ማኔጀር",
+                stepText: "የዛሬው እርምጃህ (Steps)",
+                reset: "አፅዳ",
+                finance: "የገቢና ወጪ አስተዳደር (Finance)",
+                incLabel: "አጠቃላይ ገቢ",
+                expLabel: "አጠቃላይ ወጪ",
+                balLabel: "ቀሪ ገንዘብ",
+                media: "የሚዲያ ማከማቻ (Media Vault)",
+                library: "የዲጂታል መጽሐፍ ማከማቻ (E-Library)",
+                spiritual: "መንፈሳዊ ህይወት (Spiritual Life)",
+                tasks: "ተግባራት እና ማሳሰቢያ",
+                pomodoro: "ትኩረት ማድረጊያ (Pomodoro)",
+                pass: "የፓስዎርድ ማከማቻ",
+                notes: "ማስታወሻና የኮድ ማከማቻ",
+                bookmarks: "ፈጣን ሊንኮች",
+                quote: "💡 'የቤትህ ሰላም እና ትጋት የነገ ስኬትህ መሠረት ናቸው!'"
+            },
+            en: {
+                title: "Yoseph's Private Home",
+                spiritualCalendar: "Spiritual & Holiday Calendar",
+                health: "Health & Vitals Monitor",
+                alert: "Problems & Risks Alert",
+                contact: "Daily Contact & Call Log",
+                work: "Daily Work Log",
+                steps: "Step Counter & Time Manager",
+                stepText: "Today's Steps",
+                reset: "Reset",
+                finance: "Finance & Expense Manager",
+                incLabel: "Total Income",
+                expLabel: "Total Expense",
+                balLabel: "Net Balance",
+                media: "Media Vault",
+                library: "Digital E-Library",
+                spiritual: "Spiritual Life",
+                tasks: "Tasks & Reminders",
+                pomodoro: "Pomodoro Timer",
+                pass: "Password Vault",
+                notes: "Quick Notes & Code Hub",
+                bookmarks: "Quick Bookmarks",
+                quote: "💡 'Peace and diligence at home are the foundation of future success!'"
+            },
+            ar: {
+                title: "منزل يوسف الخاص",
+                spiritualCalendar: "التقويم الروحي والعطلات",
+                health: "مراقب الصحة والحيوانات الحيوية",
+                alert: "تنبيه المشاكل والمخاطر",
+                contact: "سجل الاتصالات اليومية",
+                work: "سجل العمل اليومي",
+                steps: "عداد الخطوات وإدارة الوقت",
+                stepText: "خطوات اليوم",
+                reset: "إعادة ضبط",
+                finance: "إدارة التمويل والمصروفات",
+                incLabel: "إجمالي الدخل",
+                expLabel: "إجمالي المصروفات",
+                balLabel: "الرصيد الصافي",
+                media: "خزنة الوسائط",
+                library: "المكتبة الرقمية",
+                spiritual: "الحياة الروحية",
+                tasks: "المهام والتذكيرات",
+                pomodoro: "مؤقت بومودورو",
+                pass: "خزنة كلمات المرور",
+                notes: "ملاحظات سريعة",
+                bookmarks: "روابط سريعة",
+                quote: "💡 'السلام والاجتهاد في المنزل هما اساس النجاح!'"
+            },
+            gez: {
+                title: "ቤተ ዮሴፍ (ዕለታዊ መዝገብ)",
+                spiritualCalendar: "መንፈሳዊ ወበዓላት ሐመረ ቀናት",
+                health: "የሰናይትና የدم ግፊት መከታተያ",
+                alert: "መከራ ወስጋት ማስጠንቀቂያ",
+                contact: "ዕለታዊ ቃልና ንግግር መዝገብ",
+                work: "ዕለታዊ ሥራዎች መዝገብ",
+                steps: "እርምጃ ቆጣሪ",
+                stepText: "ዕለታዊ እርምጃ",
+                reset: "ደመስስ",
+                finance: "ገቢ ወጪ መዝገብ",
+                media: "ምስልና ድምፅ ማከማቻ",
+                library: "መጻሕፍት መዝገብ",
+                spiritual: "መንፈሳዊ ሕይወት",
+                tasks: "ተግባራት",
+                pomodoro: "ትኩረት ሰዓት",
+                pass: "የመዝገብ መቆለፊያ",
+                notes: "ማስታወሻ",
+                bookmarks: "ፈጣን ዶሴዎች",
+                quote: "💡 'በፈጣሪ ፍርሃት የሚጀምር ሥራ ሁሉ ብሩህ ነው።'"
+            }
+        };
+
+        function changeLanguage(lang) {
+            localStorage.setItem('yosef_lang', lang);
+            const t = translations[lang];
+            if (t) {
+                document.getElementById('uiTitle').innerText = t.title;
+                document.getElementById('quoteText').innerHTML = t.quote;
+                document.getElementById('tSpiritualCalendar').innerHTML = `<i class="fa-solid fa-calendar-star"></i> ${t.spiritualCalendar}`;
+                document.getElementById('tHealth').innerText = t.health;
+                document.getElementById('tAlert').innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> ${t.alert}`;
+                document.getElementById('tContact').innerHTML = `<i class="fa-solid fa-comments"></i> ${t.contact}`;
+                document.getElementById('tWork').innerHTML = `<i class="fa-solid fa-briefcase"></i> ${t.work}`;
+                document.getElementById('tSteps').innerHTML = `<i class="fa-solid fa-person-walking"></i> ${t.steps}`;
+                document.getElementById('tStepText').innerText = t.stepText;
+                document.getElementById('btnResetSteps').innerText = t.reset;
+                document.getElementById('tFinance').innerHTML = `<i class="fa-solid fa-wallet"></i> ${t.finance}`;
+                document.getElementById('tIncLabel').innerText = t.incLabel;
+                document.getElementById('tExpLabel').innerText = t.expLabel;
+                document.getElementById('tBalLabel').innerText = t.balLabel;
+                document.getElementById('tMedia').innerHTML = `<i class="fa-solid fa-photo-film"></i> ${t.media}`;
+                document.getElementById('tLibrary').innerHTML = `<i class="fa-solid fa-book-open-reader"></i> ${t.library}`;
+                document.getElementById('tSpiritual').innerHTML = `<i class="fa-solid fa-hands-praying"></i> ${t.spiritual}`;
+                document.getElementById('tTasks').innerHTML = `<i class="fa-solid fa-bell"></i> ${t.tasks}`;
+                document.getElementById('tPomodoro').innerHTML = `<i class="fa-solid fa-stopwatch"></i> ${t.pomodoro}`;
+                document.getElementById('tPass').innerHTML = `<i class="fa-solid fa-key"></i> ${t.pass}`;
+                document.getElementById('tNotes').innerHTML = `<i class="fa-solid fa-code"></i> ${t.notes}`;
+                document.getElementById('tBookmarks').innerHTML = `<i class="fa-solid fa-bookmark"></i> ${t.bookmarks}`;
+            }
+        }
+
+        const savedLang = localStorage.getItem('yosef_lang') || 'am';
+        document.getElementById('langSelector').value = savedLang;
+        changeLanguage(savedLang);
+
+        // 2. AUTO HOURLY QUOTES SYSTEM
+        const hourlyQuotes = [
+            "💡 'የቤትህ ሰላም እና ትጋት የነገ ስኬትህ መሠረት ናቸው!'",
+            "📖 'እውቀት ከሀብት ይበልጣል፤ ጥበብንም አትርፍ።'",
+            "⭐ 'ትዕግስት የጥበብ ሁሉ መጀመሪያና የድል ማሰሪያ ናት።'",
+            "🙏 'በስራህ ሁሉ እግዚአብሔርን አስብ፥ እርሱም ጎዳናህን ያቀናልሃል።'",
+            "🚀 'ዛሬ የሰራኸው ትንሹ ስራ ለቤትህ ትልቅ ብርሃን ያመጣል።'"
+        ];
+
+        function changeHourlyQuote() {
+            const savedCurrentLang = localStorage.getItem('yosef_lang') || 'am';
+            if(savedCurrentLang === 'am') {
+                const randomIndex = Math.floor(Math.random() * hourlyQuotes.length);
+                document.getElementById('quoteText').innerHTML = hourlyQuotes[randomIndex];
+            }
+        }
+        setInterval(changeHourlyQuote, 30000);
+
+        // 3. DUAL CALENDAR, ETHIOPIAN HOLIDAYS & SPIRITUAL SYSTEM
+        function updateClockAndCalendars() {
+            const now = new Date();
+            document.getElementById('liveClock').innerText = now.toLocaleTimeString();
+
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            document.getElementById('gregorianCalendarBox').innerText = `🌍 ግሪጎሪያን (አውሮፓ): ${now.toLocaleDateString('en-US', options)}`;
+
+            try {
+                const ethiopianDateStr = now.toLocaleDateString('am-ET', { calendar: 'ethiopic', weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+                document.getElementById('ethiopianCalendarBox').innerText = `🇪🇹 ኢትዮጵያዊ አቆጣጠር: ${ethiopianDateStr}`;
+
+                const monthName = now.toLocaleDateString('am-ET', { calendar: 'ethiopic', month: 'long' });
+                const dayNum = now.toLocaleDateString('am-ET', { calendar: 'ethiopic', day: 'numeric' });
+                const dayOfWeek = now.toLocaleDateString('am-ET', { calendar: 'ethiopic', weekday: 'long' });
+
+                let holidayMsg = "✨ ዕለታዊ ሰላም እና ማስተዋል ከእርስዎ ጋር ይሁን።";
+                
+                if (monthName.includes('መስከረም') && dayNum.includes('17')) {
+                    holidayMsg = "🎉 እንኳን ለብርሃነ መስቀል (መስቀል በዓል) በሰላም አደረሰዎት! 🌼";
+                } else if (monthName.includes('ታኅሣሥ') && dayNum.includes('29')) {
+                    holidayMsg = "🌟 እንኳን ለጌታችን ለኢየሱስ ክርስቶስ የልደት በዓል (ገና) በሰላም አደረሰዎት! 🙏";
+                } else if (monthName.includes('ጥር') && dayNum.includes('11')) {
+                    holidayMsg = "💧 እንኳን ለብርሃነ ጥምቀት (የጥምቀት በዓል) በሰላም አደረሰዎት!";
+                } else if (dayOfWeek.includes('ረቡዕ') || dayOfWeek.includes('ዓርብ')) {
+                    holidayMsg = `🌿 የዕለቱ ጾም (${dayOfWeek}) ነው። የሰላም እና የጸሎት ቀን ይሁንልዎ!`;
+                } else {
+                    holidayMsg = `🙏 የዕለቱ መንፈሳዊ ትኩረት፡ "እግዚአብሔር መጠጊያችንና ኃይላችን ነው።" (${monthName} ${dayNum})`;
+                }
+
+                document.getElementById('holidayText').innerText = holidayMsg;
+
+            } catch (e) {
+                document.getElementById('ethiopianCalendarBox').innerText = `🇪🇹 ኢትዮጵያዊ አቆጣጠር: ጥቅምት 2019 ዓ.ም.`;
+                document.getElementById('holidayText').innerText = "🙏 የሰላም እና የትጋት ቀን ይሁንልዎ!";
+            }
+        }
+        setInterval(updateClockAndCalendars, 1000);
+        updateClockAndCalendars();
+
+        // 4. DARK MODE TOGGLE
+        const themeToggleBtn = document.getElementById('themeToggle');
+        themeToggleBtn.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            const isDark = document.body.classList.contains('dark-mode');
+            themeToggleBtn.innerHTML = isDark ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
+        });
+
+        // 5. HEALTH & VITALS MONITOR
+        const healthRecords = JSON.parse(localStorage.getItem('yosef_health') || '[]');
+        const healthForm = document.getElementById('healthForm');
+        const healthList = document.getElementById('healthList');
+
+        function renderHealth() {
+            healthList.innerHTML = '';
+            healthRecords.forEach((h, idx) => {
+                const li = document.createElement('li');
+                li.style.borderLeft = '4px solid var(--health)';
+                li.innerHTML = `<div><strong style="color: var(--health);">❤️ ግፊት: ${h.bp} | ልብ ምት: ${h.hr} bpm</strong><br><small style="color: var(--text-muted);">${h.note} (${h.date})</small></div><button class="delete-btn" onclick="deleteHealth(${idx})"><i class="fa-solid fa-trash"></i></button>`;
+                healthList.appendChild(li);
+            });
+        }
+        renderHealth();
+
+        healthForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const bp = document.getElementById('bpValue').value;
+            const hr = parseInt(document.getElementById('hrValue').value);
+            const note = document.getElementById('healthNote').value;
+            const date = new Date().toLocaleDateString();
+
+            healthRecords.push({ bp, hr, note, date });
+            localStorage.setItem('yosef_health', JSON.stringify(healthRecords));
+            
+            if (hr > 100 || hr < 60) {
+                document.getElementById('alarmSound').play();
+                alert(`⚠️ የጤና ማስጠንቀቂያ፡ የልብ ምትዎ (${hr} bpm) ከተለመደው መጠን ውጭ ነው! እባክዎ آرام ይውሰዱ።`);
+            } else {
+                alert(`✅ የጤና መረጃዎ በስኬት ተመዝግቧል!`);
+            }
+
+            renderHealth();
+            healthForm.reset();
+        });
+
+        function deleteHealth(idx) {
+            healthRecords.splice(idx, 1);
+            localStorage.setItem('yosef_health', JSON.stringify(healthRecords));
+            renderHealth();
+        }
+
+        // 6. PROBLEM & RISK ALERTS
+        const problems = JSON.parse(localStorage.getItem('yosef_problems') || '[]');
+        const problemForm = document.getElementById('problemForm');
+        const problemList = document.getElementById('problemList');
+
+        function renderProblems() {
+            problemList.innerHTML = '';
+            problems.forEach((p, idx) => {
+                const li = document.createElement('li');
+                li.style.borderLeft = '4px solid var(--accent)';
+                li.innerHTML = `<div><strong style="color: var(--accent);">🚨 ${p.title}</strong><br><small style="color: var(--text-muted);">${p.desc}</small></div><button class="delete-btn" onclick="deleteProblem(${idx})"><i class="fa-solid fa-trash"></i></button>`;
+                problemList.appendChild(li);
+            });
+        }
+        renderProblems();
+
+        problemForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const title = document.getElementById('problemTitle').value;
+            const desc = document.getElementById('problemDesc').value;
+            problems.push({ title, desc });
+            localStorage.setItem('yosef_problems', JSON.stringify(problems));
+            document.getElementById('alarmSound').play();
+            renderProblems();
+            problemForm.reset();
+        });
+
+        function deleteProblem(idx) {
+            problems.splice(idx, 1);
+            localStorage.setItem('yosef_problems', JSON.stringify(problems));
+            renderProblems();
+        }
+
+        // 7. CONTACT & CALL LOG TRACKER
+        const interactions = JSON.parse(localStorage.getItem('yosef_interactions') || '[]');
+        const interactionForm = document.getElementById('interactionForm');
+        const interactionList = document.getElementById('interactionList');
+
+        function renderInteractions() {
+            interactionList.innerHTML = '';
+            interactions.forEach((i, idx) => {
+                const li = document.createElement('li');
+                li.innerHTML = `<div><strong>🗣️ ${i.name}</strong> (${i.duration})<br><small style="color: var(--text-muted);">ርዕስ: ${i.topic}</small></div><button class="delete-btn" onclick="deleteInteraction(${idx})"><i class="fa-solid fa-trash"></i></button>`;
+                interactionList.appendChild(li);
+            });
+        }
+        renderInteractions();
+
+        interactionForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('personName').value;
+            const duration = document.getElementById('talkDuration').value;
+            const topic = document.getElementById('talkTopic').value;
+            interactions.push({ name, duration, topic });
+            localStorage.setItem('yosef_interactions', JSON.stringify(interactions));
+            renderInteractions();
+            interactionForm.reset();
+        });
+
+        function deleteInteraction(idx) {
+            interactions.splice(idx, 1);
+            localStorage.setItem('yosef_interactions', JSON.stringify(interactions));
+            renderInteractions();
+        }
+
+        // 8. DAILY WORK LOG
+        const workLogs = JSON.parse(localStorage.getItem('yosef_worklogs') || '[]');
+        const workLogForm = document.getElementById('workLogForm');
+        const workLogList = document.getElementById('workLogList');
+
+        function renderWorkLogs() {
+            workLogList.innerHTML = '';
+            workLogs.forEach((w, idx) => {
+                const li = document.createElement('li');
+                li.innerHTML = `<div><strong>💼 ${w.title}</strong><br><small style="color: var(--text-muted);">${w.detail}</small></div><button class="delete-btn" onclick="deleteWorkLog(${idx})"><i class="fa-solid fa-trash"></i></button>`;
+                workLogList.appendChild(li);
+            });
+        }
+        renderWorkLogs();
+
+        workLogForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const title = document.getElementById('workTitle').value;
+            const detail = document.getElementById('workDetail').value;
+            workLogs.push({ title, detail });
+            localStorage.setItem('yosef_worklogs', JSON.stringify(workLogs));
+            renderWorkLogs();
+            workLogForm.reset();
+        });
+
+        function deleteWorkLog(idx) {
+            workLogs.splice(idx, 1);
+            localStorage.setItem('yosef_worklogs', JSON.stringify(workLogs));
+            renderWorkLogs();
+        }
+
+        // 9. STEP COUNTER
+        let steps = parseInt(localStorage.getItem('yosef_steps') || '0');
+        function updateStepUI() {
+            document.getElementById('stepCountDisplay').innerText = steps;
+            localStorage.setItem('yosef_steps', steps);
+        }
+        function addSteps(amount) {
+            steps += amount;
+            updateStepUI();
+        }
+        function resetSteps() {
+            steps = 0;
+            updateStepUI();
+        }
+        updateStepUI();
+
+        // 10. ADVANCED FINANCE MANAGER
+        const finances = JSON.parse(localStorage.getItem('yosef_finances') || '[]');
+        const financeForm = document.getElementById('financeForm');
+        const financeList = document.getElementById('financeList');
+
+        function renderFinances() {
+            financeList.innerHTML = '';
+            let totalInc = 0;
+            let totalExp = 0;
+
+            finances.forEach((f, idx) => {
+                const amt = parseFloat(f.amount);
+                if (f.type === 'income') totalInc += amt;
+                else totalExp += amt;
+
+                const li = document.createElement('li');
+                const badgeColor = f.type === 'income' ? 'var(--success)' : 'var(--accent)';
+                const sign = f.type === 'income' ? '+' : '-';
+                li.innerHTML = `<div><strong>${f.desc}</strong><br><small style="color: ${badgeColor}; font-weight: bold;">${f.type === 'income' ? 'ገቢ (Income)' : 'ወጪ (Expense)'}</small></div><div><strong style="color: ${badgeColor};">${sign}${amt} ETB</strong> <button class="delete-btn" style="margin-left: 8px;" onclick="deleteFinance(${idx})"><i class="fa-solid fa-trash"></i></button></div>`;
+                financeList.appendChild(li);
+            });
+
+            const net = totalInc - totalExp;
+            document.getElementById('totalIncome').innerText = `${totalInc} ETB`;
+            document.getElementById('totalExpense').innerText = `${totalExp} ETB`;
+            document.getElementById('netBalance').innerText = `${net} ETB`;
+            localStorage.setItem('yosef_finances', JSON.stringify(finances));
+        }
+        renderFinances();
+
+        financeForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const desc = document.getElementById('finDesc').value;
+            const amount = document.getElementById('finAmount').value;
+            const type = document.getElementById('finType').value;
+            finances.push({ desc, amount, type });
+            renderFinances();
+            financeForm.reset();
+        });
+
+        function deleteFinance(idx) {
+            finances.splice(idx, 1);
+            renderFinances();
+        }
+
+        // 11. MEDIA VAULT
+        const medias = JSON.parse(localStorage.getItem('yosef_medias') || '[]');
+        const mediaForm = document.getElementById('mediaForm');
+        const mediaList = document.getElementById('mediaList');
+
+        function renderMedias() {
+            mediaList.innerHTML = '';
+            medias.forEach((m, idx) => {
+                const li = document.createElement('li');
+                let icon = '🖼️';
+                if (m.type === 'audio') icon = '🎵';
+                if (m.type === 'video') icon = '🎥';
+
+                li.innerHTML = `<div><strong>${icon} ${m.title}</strong><br><a href="${m.url}" target="_blank" style="font-size: 0.8rem; color: var(--primary);">ክፈት / አጫውት (Open)</a></div><button class="delete-btn" onclick="deleteMedia(${idx})"><i class="fa-solid fa-trash"></i></button>`;
+                mediaList.appendChild(li);
+            });
+        }
+        renderMedias();
+
+        mediaForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const title = document.getElementById('mediaTitle').value;
+            const url = document.getElementById('mediaUrl').value;
+            const type = document.getElementById('mediaType').value;
+            medias.push({ title, url, type });
+            localStorage.setItem('yosef_medias', JSON.stringify(medias));
+            renderMedias();
+            mediaForm.reset();
+        });
+
+        function deleteMedia(idx) {
+            medias.splice(idx, 1);
+            localStorage.setItem('yosef_medias', JSON.stringify(medias));
+            renderMedias();
+        }
+
+        // 12. E-BOOK / DIGITAL LIBRARY
+        const books = JSON.parse(localStorage.getItem('yosef_books') || '[]');
+        const bookForm = document.getElementById('bookForm');
+        const bookList = document.getElementById('bookList');
+
+        function renderBooks() {
+            bookList.innerHTML = '';
+            books.forEach((b, idx) => {
+                const li = document.createElement('li');
+                li.innerHTML = `<div><strong>📚 ${b.title}</strong><br><small style="color: var(--primary); cursor: pointer;" onclick="readBook(${idx})">👉 አንብብ (Read)</small></div><button class="delete-btn" onclick="deleteBook(${idx})"><i class="fa-solid fa-trash"></i></button>`;
+                bookList.appendChild(li);
+            });
+        }
+        renderBooks();
+
+        bookForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const title = document.getElementById('bookTitle').value;
+            const content = document.getElementById('bookContent').value;
+            books.push({ title, content });
+            localStorage.setItem('yosef_books', JSON.stringify(books));
+            renderBooks();
+            bookForm.reset();
+        });
+
+        function readBook(idx) {
+            const book = books[idx];
+            alert(`📖 መጽሐፍ: ${book.title}\n\nይዘት:\n${book.content}`);
+        }
+
+        function deleteBook(idx) {
+            books.splice(idx, 1);
+            localStorage.setItem('yosef_books', JSON.stringify(books));
+            renderBooks();
+        }
+
+        // 13. SPIRITUAL LIFE
+        const spiritualForm = document.getElementById('spiritualForm');
+        const spiritualList = document.getElementById('spiritualList');
+        const spirituals = JSON.parse(localStorage.getItem('yosef_spirituals') || '[]');
+
+        function renderSpirituals() {
+            spiritualList.innerHTML = '';
+            spirituals.forEach((s, idx) => {
+                const li = document.createElement('li');
+                li.innerHTML = `<div><strong>${s.desc}</strong><br><small style="color: var(--text-muted);">${s.date}</small></div><button class="delete-btn" onclick="deleteSpiritual(${idx})"><i class="fa-solid fa-trash"></i></button>`;
+                spiritualList.appendChild(li);
+            });
+        }
+        renderSpirituals();
+
+        spiritualForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const desc = document.getElementById('spiritualDesc').value;
+            const date = document.getElementById('spiritualDate').value;
+            spirituals.push({ desc, date });
+            localStorage.setItem('yosef_spirituals', JSON.stringify(spirituals));
+            renderSpirituals();
+            spiritualForm.reset();
+        });
+
+        function deleteSpiritual(idx) {
+            spirituals.splice(idx, 1);
+            localStorage.setItem('yosef_spirituals', JSON.stringify(spirituals));
+            renderSpirituals();
+        }
+
+        // 14. TASK REMINDER
+        const tasks = JSON.parse(localStorage.getItem('yosef_tasks') || '[]');
+        const taskForm = document.getElementById('taskForm');
+        const taskList = document.getElementById('taskList');
+        const alarmSound = document.getElementById('alarmSound');
+
+        if ("Notification" in window) { Notification.requestPermission(); }
+
+        taskForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const title = document.getElementById('taskTitle').value;
+            const time = document.getElementById('taskTime').value;
+            tasks.push({ id: Date.now(), title, time, notified: false });
+            localStorage.setItem('yosef_tasks', JSON.stringify(tasks));
+            renderTasks();
+            taskForm.reset();
+        });
+
+        function renderTasks() {
+            taskList.innerHTML = '';
+            tasks.forEach(task => {
+                const li = document.createElement('li');
+                li.innerHTML = `<div><strong>${task.title}</strong><br><small style="color: var(--text-muted);">${new Date(task.time).toLocaleString()}</small></div><button class="delete-btn" onclick="deleteTask(${task.id})"><i class="fa-solid fa-trash"></i></button>`;
+                taskList.appendChild(li);
+            });
+        }
+        renderTasks();
+
+        function deleteTask(id) {
+            const idx = tasks.findIndex(t => t.id === id);
+            if (idx > -1) tasks.splice(idx, 1);
+            localStorage.setItem('yosef_tasks', JSON.stringify(tasks));
+            renderTasks();
+        }
+
+        setInterval(() => {
+            const now = new Date().getTime();
+            tasks.forEach(task => {
+                if (new Date(task.time).getTime() <= now && !task.notified) {
+                    task.notified = true;
+                    localStorage.setItem('yosef_tasks', JSON.stringify(tasks));
+                    alarmSound.play();
+                    if (Notification.permission === "granted") { new Notification("🚨 ታስክ ማሳሰቢያ!", { body: task.title }); }
+                    else { alert(`🚨 ማሳሰቢያ፡ ${task.title}`); }
+                }
+            });
+        }, 1000);
+
+        // 15. POMODORO TIMER
+        let timerSeconds = 25 * 60;
+        let timerInterval = null;
+
+        function updateTimerDisplay() {
+            const mins = Math.floor(timerSeconds / 60);
+            const secs = timerSeconds % 60;
+            document.getElementById('timerDisplay').innerText = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+        }
+
+        document.getElementById('startTimer').addEventListener('click', () => {
+            if (!timerInterval) {
+                timerInterval = setInterval(() => {
+                    if (timerSeconds > 0) { timerSeconds--; updateTimerDisplay(); }
+                    else { clearInterval(timerInterval); alarmSound.play(); alert('👏 የትኩረት ሰዓት ተጠናቋል!'); }
+                }, 1000);
+            }
+        });
+        document.getElementById('pauseTimer').addEventListener('click', () => { clearInterval(timerInterval); timerInterval = null; });
+        document.getElementById('resetTimer').addEventListener('click', () => { clearInterval(timerInterval); timerInterval = null; timerSeconds = 25 * 60; updateTimerDisplay(); });
+
+        // 16. QUICK NOTES
+        const noteTextarea = document.getElementById('quickNote');
+        noteTextarea.value = localStorage.getItem('yosef_note') || '';
+        document.getElementById('saveNoteBtn').addEventListener('click', () => {
+            localStorage.setItem('yosef_note', noteTextarea.value);
+            const status = document.getElementById('noteStatus');
+            status.style.display = 'block';
+            setTimeout(() => status.style.display = 'none', 2000);
+        });
+    </script>
+</body>
+</html>
